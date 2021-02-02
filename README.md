@@ -10,4 +10,6 @@ springapp
 
 #### [Lo Sviluppatore](http://losviluppatore.it/)
 
-#### (https://bezkoder.com/ {:target="_blank"})
+#### [Z Koder](https://bezkoder.com/)
+
+#### [SpringHow](https://springhow.com/
