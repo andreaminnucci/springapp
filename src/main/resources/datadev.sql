@@ -1,0 +1,2 @@
+INSERT INTO anagrafica(id, nome, cognome, data_nascita) VALUES (10001, 'Mario', 'Rossi', '1980-02-27');
+INSERT INTO anagrafica(id, nome, cognome, data_nascita) VALUES (10002, 'Giovanni', 'Bianchi', '1984-05-03');
