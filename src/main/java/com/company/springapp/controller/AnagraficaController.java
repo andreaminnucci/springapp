@@ -2,12 +2,17 @@ package com.company.springapp.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.company.springapp.controller.dto.AuthenticationRequest;
+import com.company.springapp.dto.AnagraficaDTO;
+import com.company.springapp.dto.AnagraficaDTOConverter;
 import com.company.springapp.model.Anagrafica;
 import com.company.springapp.service.AnagraficaService;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +30,11 @@ public class AnagraficaController {
 	@Autowired
 	public AnagraficaService anagraficaService;
 	
-	@RequestMapping(value = "list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Anagrafica>> list(@RequestParam(required = false) String q,
+	@Autowired
+	public AnagraficaDTOConverter anagraficaDTOConverter;
+	
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AnagraficaDTO>> list(@RequestParam(required = false) String q,
             @RequestParam(required = false) String sortBy, @RequestParam(required = false) String orderBy,
             @RequestParam(required = false) Integer limit, @RequestParam(required = false) Integer offset) {
 		log.info("q = {}", q);
@@ -42,13 +50,17 @@ public class AnagraficaController {
         }
         List<Anagrafica> results = anagraficaService.findAll(q, offset, limit, sortBy, orderBy);
         
-        return  ResponseEntity.ok(results);
+        List<AnagraficaDTO> anagraficaDTOs = anagraficaDTOConverter.entityToDto(results);
+        
+        return  ResponseEntity.ok(anagraficaDTOs);
 	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> add(@RequestBody Anagrafica anagrafica) {
+	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<AnagraficaDTO> add(@RequestBody @Valid AnagraficaDTO anagraficaDTO) {
+		log.info(anagraficaDTO.toString());
+		Anagrafica anagrafica = anagraficaDTOConverter.dtoToEntity(anagraficaDTO);
 		anagraficaService.createAnagrafica(anagrafica);
-		ResponseEntity.ok(anagrafica);
+		ResponseEntity.ok(anagraficaDTO);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 }

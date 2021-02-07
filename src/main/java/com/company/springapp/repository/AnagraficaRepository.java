@@ -12,4 +12,5 @@ public interface AnagraficaRepository extends PagingAndSortingRepository<Anagraf
 
 	public List<Anagrafica> findAll();
 	
+	
 }

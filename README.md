@@ -23,3 +23,9 @@ springapp
 #### [RameshMF](https://github.com/RameshMF)
 
 #### [Video Corsi Java, C++11 STL, Python, OOP, Visual Studio C#, Basi di dati, HTML, CSS, Javascript, Sistemi Operativi](https://www.youtube.com/channel/UC5_j0dmvXE0xs6ra-clGz4A)
+
+#### [Java67](https://www.java67.com)
+
+#### [JavaSterling](https://javasterling.com)
+
+#### [Java Technology and Beyond](https://javatechonline.com)
